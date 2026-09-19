@@ -1,0 +1,127 @@
+canon:
+  id: ef-canon
+  revision: 5
+  status: CURRENT
+components:
+  ef-foundation:
+    class: PROVIDER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: BOTH
+    activation_scope: BOTH
+    storage_scope: NOT_APPLICABLE
+    capabilities:
+    - ef.shared.foundation
+  ef-data:
+    class: PROVIDER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: BOTH
+    activation_scope: BOTH
+    storage_scope: BOTH
+    capabilities:
+    - ef.shared.persistence
+  ef-presentation:
+    class: PROVIDER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: BOTH
+    activation_scope: BOTH
+    storage_scope: NOT_APPLICABLE
+    capabilities:
+    - ef.shared.presentation
+  ef-observability:
+    class: PROVIDER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: BOTH
+    activation_scope: BOTH
+    storage_scope: BOTH
+    capabilities:
+    - ef.shared.observability
+  ef-operations:
+    class: PROVIDER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: BOTH
+    activation_scope: BOTH
+    storage_scope: BOTH
+    capabilities:
+    - ef.shared.operations
+  ef-governance:
+    class: INSTITUTIONAL_CONTROLLER
+    implementation_state: ADOPTION_PENDING
+    conformance_state: BLOCKED
+    runtime_availability: UNKNOWN
+    multisite_scope: NETWORK
+    activation_scope: NETWORK
+    storage_scope: NETWORK
+    capabilities:
+    - ef.institutional.conformance
+    - ef.institutional.release
+capabilities:
+  ef.shared.foundation:
+    status: ADMITTED
+    owner: foundation
+    provider: ef-foundation
+    contract: contracts/foundation.yaml
+  ef.shared.persistence:
+    status: ADMITTED
+    owner: data
+    provider: ef-data
+    contract: contracts/data.yaml
+  ef.shared.presentation:
+    status: ADMITTED
+    owner: presentation
+    provider: ef-presentation
+    contract: contracts/presentation.yaml
+  ef.shared.observability:
+    status: ADMITTED
+    owner: observability
+    provider: ef-observability
+    contract: contracts/observability.yaml
+  ef.shared.operations:
+    status: ADMITTED
+    owner: operations
+    provider: ef-operations
+    contract: contracts/operations.yaml
+  ef.institutional.conformance:
+    status: ADMITTED
+    owner: institutional_control
+    provider: ef-governance
+    contract: contracts/institutional-conformance.yaml
+  ef.institutional.release:
+    status: ADMITTED
+    owner: institutional_control
+    provider: ef-governance
+    contract: contracts/institutional-release.yaml
+platform_capabilities:
+  wordpress.hooks:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+  wordpress.http:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+  wordpress.rest:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+  wordpress.abilities:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+  wordpress.ai_client:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+  wordpress.connectors:
+    owner: WORDPRESS
+    availability: FEATURE_DETECT
+rules:
+  consume_only_if:
+  - capability_status_is_ADMITTED
+  - contract_locator_resolves_and_contract_capability_matches
+  - provider_conformance_is_PASS
+  - runtime_availability_is_AVAILABLE_or_contract_explicitly_permits_DEGRADED

@@ -1,0 +1,59 @@
+canon_id: ef-canon
+revision: 5
+status: CURRENT
+entrypoint: CANON.md
+registry: registry.yaml
+registry_schema: schemas/registry.schema.json
+schemas_dir: schemas/
+contracts_dir: contracts/
+active_files:
+- CANON.md
+- registry.yaml
+- manifest.yaml
+- validate.py
+- SHA256SUMS
+- schemas/capability.schema.json
+- schemas/component.schema.json
+- schemas/conformance-result.schema.json
+- schemas/consumer.schema.json
+- schemas/context.schema.json
+- schemas/contract.schema.json
+- schemas/data-requirement.schema.json
+- schemas/evidence-candidate.schema.json
+- schemas/health-status.schema.json
+- schemas/job.schema.json
+- schemas/migration-descriptor.schema.json
+- schemas/operation.schema.json
+- schemas/placement-result.schema.json
+- schemas/presentation-ui-contract.schema.json
+- schemas/provider.schema.json
+- schemas/registry.schema.json
+- schemas/resource-descriptor.schema.json
+- schemas/result.schema.json
+- contracts/data.yaml
+- contracts/foundation.yaml
+- contracts/institutional-conformance.yaml
+- contracts/institutional-release.yaml
+- contracts/observability.yaml
+- contracts/operations.yaml
+- contracts/presentation.yaml
+- resources/foundation-resources.yaml
+- resources/presentation-resources.yaml
+- resources/presentation-ui-contract.yaml
+checksum_policy: SHA256SUMS covers all active files except SHA256SUMS itself to avoid
+  self-reference.
+history_in_active_package: false
+normal_reading_order:
+- manifest.yaml
+- CANON.md
+- registry.yaml
+selective_loading:
+  contracts: Load only contracts for capabilities required by the task.
+  schemas: Load schemas when validating or materializing machine declarations.
+cross_document_validator: validate.py
+resources_dir: resources/
+mechanical_acceptance_command: python validate.py
+resource_type_schemas:
+  resources/foundation-resources.yaml: schemas/resource-descriptor.schema.json
+  resources/presentation-resources.yaml: schemas/resource-descriptor.schema.json
+  resources/presentation-ui-contract.yaml: schemas/presentation-ui-contract.schema.json
